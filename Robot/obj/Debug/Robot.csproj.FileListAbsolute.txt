@@ -1,0 +1,6 @@
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\obj\Debug\Robot.csproj.CoreCompileInputs.cache
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\bin\Debug\Robot.exe.config
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\bin\Debug\Robot.exe
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\bin\Debug\Robot.pdb
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\obj\Debug\Robot.exe
+C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\obj\Debug\Robot.pdb

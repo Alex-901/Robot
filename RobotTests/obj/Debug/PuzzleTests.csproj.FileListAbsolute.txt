@@ -1,0 +1,17 @@
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\PuzzleTests.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\PuzzleTests.pdb
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Puzzle.exe
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Puzzle.exe.config
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\obj\Debug\PuzzleTests.csproj.CoreCompileInputs.cache
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\obj\Debug\PuzzleTests.csproj.CopyComplete
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\obj\Debug\PuzzleTests.dll
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\obj\Debug\PuzzleTests.pdb
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\bin\Debug\Puzzle.pdb
+C:\Users\alexhod\source\repos\Puzzle\PuzzleTests\obj\Debug\PuzzleTests.csprojAssemblyReference.cache
