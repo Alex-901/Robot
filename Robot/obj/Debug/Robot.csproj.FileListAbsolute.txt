@@ -4,3 +4,10 @@ C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\bin\Debug\Robot.exe
 C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\bin\Debug\Robot.pdb
 C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\obj\Debug\Robot.exe
 C:\Users\alex_\OneDrive\Desktop\Puzzle\Puzzle\obj\Debug\Robot.pdb
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\obj\Debug\Robot.csprojAssemblyReference.cache
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\obj\Debug\Robot.csproj.CoreCompileInputs.cache
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\obj\Debug\Robot.exe
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\obj\Debug\Robot.pdb
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\bin\Debug\Robot.exe.config
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\bin\Debug\Robot.exe
+C:\Users\alexhod\Source\Repos\Alex-901\Robot\Robot\bin\Debug\Robot.pdb

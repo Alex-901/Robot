@@ -1,5 +1,4 @@
 ﻿using System;
-using static Robot.RobotController;
 
 namespace Robot
 {
@@ -7,76 +6,59 @@ namespace Robot
     {
         static void Main(string[] args)
         {
-            AwaitCommand();
+            try
+            {
+                AwaitCommand();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format(Constants.GENERALERROR, ex));
+            }
         }
 
         public static void AwaitCommand()
         {
             var input = Console.ReadLine().ToUpper();
-            var split = input.Split(' ');
-            var controller = new RobotController();
 
-            if(split[0] != null && Enum.TryParse(split[0], out RobotCommands command))
+            if (!Helpers.ValidateAndParse(input, out string exception, out ConsoleCommand consoleCommand))
             {
+                Console.WriteLine(exception);
+                AwaitCommand();
+            }
+            else
+            {
+                var controller = new RobotController(consoleCommand);
+
                 //Don't continue if the command is not place and the robot is not on the table 
-                if (command != RobotCommands.PLACE && RobotState.CurrentDirection == Direction.NOTSET)
+                if (consoleCommand.Command != Constants.RobotCommands.PLACE && RobotState.CurrentDirection == Constants.Direction.NOTSET)
                 {
+                    Console.WriteLine(Constants.PLACECOMMANDFIRST);
                     AwaitCommand();
                 }
 
-                switch (command)
+                switch (consoleCommand.Command)
                 {
-                    case RobotCommands.MOVE:
+                    case Constants.RobotCommands.MOVE:
                         controller.Move();
                         break;
-                    case RobotCommands.REPORT:
+                    case Constants.RobotCommands.REPORT:
                         Console.WriteLine(controller.Report());
                         break;
-                    case RobotCommands.LEFT:
+                    case Constants.RobotCommands.LEFT:
                         controller.Left();
                         break;
-                    case RobotCommands.RIGHT:
+                    case Constants.RobotCommands.RIGHT:
                         controller.Right();
                         break;
-                    case RobotCommands.PLACE:
-                        ParseCommand(split[1], out int x, out int y, out Direction direction);
-                        controller.Place(direction, x, y);
+                    case Constants.RobotCommands.PLACE:
+                        controller.Place();
                         break;
                     default:
                         break;
                 }
             }
-            else
-            {
-                Console.WriteLine("Invalid Command: Please Pass one of the following:");
-                Console.WriteLine(RobotCommands.MOVE);
-                Console.WriteLine(RobotCommands.REPORT);
-                Console.WriteLine(RobotCommands.LEFT);
-                Console.WriteLine(RobotCommands.RIGHT);
-                Console.WriteLine(RobotCommands.PLACE);
-            }
 
             AwaitCommand();
-        }
-
-        public static void ParseCommand(string input, out int x, out int y, out Direction direction)
-        {
-            try
-            {
-                var split2 = input.Split(',');
-                x = Convert.ToInt32(split2[0]);
-                y = Convert.ToInt32(split2[1]);
-                Enum.TryParse(split2[2].ToUpper(), out Direction placeDirection);
-
-                direction = placeDirection;
-            }
-            catch (Exception)
-            {
-                x = 0;
-                y = 0;
-                direction = Direction.NORTH;
-                //TODO: Output message
-            }
         }
     }
 }

@@ -1,28 +1,13 @@
-﻿namespace Robot
+﻿
+namespace Robot
 {
     public class RobotController
     {
-        public const int MAXROWS = 4;
-        public const int MAXCOLUMNS = 4;
+        private ConsoleCommand _currentCommand;
 
-        public const int MINROWS = 0;
-        public const int MINCOLUMNS = 0;
-
-        public enum RobotCommands
+        public RobotController(ConsoleCommand command)
         {
-            MOVE,
-            REPORT,
-            LEFT,
-            RIGHT,
-            PLACE
-        }
-        public enum Direction
-        {
-            NORTH,
-            SOUTH,
-            WEST,
-            EAST,
-            NOTSET
+            _currentCommand = command;
         }
 
         /// <summary>
@@ -30,20 +15,20 @@
         /// </summary>
         public void Move()
         {
-            if (ValidateMove(RobotState.X, RobotState.Y, RobotState.CurrentDirection))
+            if (ValidateMove())
             {
                 switch (RobotState.CurrentDirection)
                 {
-                    case Direction.NORTH:
+                    case Constants.Direction.NORTH:
                         RobotState.X++;
                         break;
-                    case Direction.SOUTH:
+                    case Constants.Direction.SOUTH:
                         RobotState.X--;
                         break;
-                    case Direction.WEST:
+                    case Constants.Direction.WEST:
                         RobotState.Y--;
                         break;
-                    case Direction.EAST:
+                    case Constants.Direction.EAST:
                         RobotState.Y++;
                         break;
                 }
@@ -56,13 +41,13 @@
         /// <param name="direction"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void Place(Direction direction, int x, int y)
+        public void Place()
         {
-            if (ValidatePlace(x, y, direction))
+            if (ValidatePlace())
             {
-                RobotState.CurrentDirection = direction;
-                RobotState.X = x;
-                RobotState.Y = y;
+                RobotState.CurrentDirection = _currentCommand.Direction;
+                RobotState.X = _currentCommand.X;
+                RobotState.Y = _currentCommand.Y;
             }
         }
 
@@ -73,17 +58,17 @@
         {
             switch (RobotState.CurrentDirection)
             {
-                case Direction.NORTH:
-                    RobotState.CurrentDirection = Direction.WEST;
+                case Constants.Direction.NORTH:
+                    RobotState.CurrentDirection = Constants.Direction.WEST;
                     break;
-                case Direction.SOUTH:
-                    RobotState.CurrentDirection = Direction.EAST;
+                case Constants.Direction.SOUTH:
+                    RobotState.CurrentDirection = Constants.Direction.EAST;
                     break;
-                case Direction.WEST:
-                    RobotState.CurrentDirection = Direction.SOUTH;
+                case Constants.Direction.WEST:
+                    RobotState.CurrentDirection = Constants.Direction.SOUTH;
                     break;
-                case Direction.EAST:
-                    RobotState.CurrentDirection = Direction.NORTH;
+                case Constants.Direction.EAST:
+                    RobotState.CurrentDirection = Constants.Direction.NORTH;
                     break;
             }
         }
@@ -95,17 +80,17 @@
         {
             switch (RobotState.CurrentDirection)
             {
-                case Direction.NORTH:
-                    RobotState.CurrentDirection = Direction.EAST;
+                case Constants.Direction.NORTH:
+                    RobotState.CurrentDirection = Constants.Direction.EAST;
                     break;
-                case Direction.SOUTH:
-                    RobotState.CurrentDirection = Direction.WEST;
+                case Constants.Direction.SOUTH:
+                    RobotState.CurrentDirection = Constants.Direction.WEST;
                     break;
-                case Direction.WEST:
-                    RobotState.CurrentDirection = Direction.NORTH;
+                case Constants.Direction.WEST:
+                    RobotState.CurrentDirection = Constants.Direction.NORTH;
                     break;
-                case Direction.EAST:
-                    RobotState.CurrentDirection = Direction.SOUTH;
+                case Constants.Direction.EAST:
+                    RobotState.CurrentDirection = Constants.Direction.SOUTH;
                     break;
             }
         }
@@ -126,18 +111,18 @@
         /// <param name="y"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public bool ValidateMove(int x, int y, Direction direction)
+        public bool ValidateMove()
         {
-            switch (direction)
+            switch (RobotState.CurrentDirection)
             {
-                case Direction.NORTH:
-                    return (x + 1 <= MAXROWS);
-                case Direction.SOUTH:
-                    return (x - 1 >= MINROWS);
-                case Direction.WEST:
-                    return (y - 1 >= MINROWS);
-                case Direction.EAST:
-                    return (y + 1 <= MAXCOLUMNS);
+                case Constants.Direction.NORTH:
+                    return (RobotState.X + 1 <= Constants.MAXROWS);
+                case Constants.Direction.SOUTH:
+                    return (RobotState.X - 1 >= Constants.MINROWS);
+                case Constants.Direction.WEST:
+                    return (RobotState.Y - 1 >= Constants.MINROWS);
+                case Constants.Direction.EAST:
+                    return (RobotState.Y + 1 <= Constants.MAXCOLUMNS);
             }
 
             return false;
@@ -150,18 +135,18 @@
         /// <param name="y"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public bool ValidatePlace(int x, int y, Direction direction)
+        public bool ValidatePlace()
         {
-            switch (direction)
+            switch (_currentCommand.Direction)
             {
-                case Direction.NORTH:
-                    return (x <= MAXROWS);
-                case Direction.SOUTH:
-                    return (x >= MINROWS);
-                case Direction.WEST:
-                    return (y >= MINROWS);
-                case Direction.EAST:
-                    return (y <= MAXCOLUMNS);
+                case Constants.Direction.NORTH:
+                    return (_currentCommand.X <= Constants.MAXROWS);
+                case Constants.Direction.SOUTH:
+                    return (_currentCommand.Y >= Constants.MINROWS);
+                case Constants.Direction.WEST:
+                    return (_currentCommand.Y >= Constants.MINROWS);
+                case Constants.Direction.EAST:
+                    return (_currentCommand.Y <= Constants.MAXCOLUMNS);
             }
 
             return false;
