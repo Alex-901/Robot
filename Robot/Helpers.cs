@@ -12,68 +12,35 @@ namespace Robot
         {
             exceptionMessage = string.Empty;
             inputCommand = new ConsoleCommand();
-
+            
             try
             {
-                if(!Enum.TryParse(input, out Constants.RobotCommands command))
-                {
-                    if(ParseCommand(input, out int x, out int y, out Constants.Direction direction, out Constants.RobotCommands cmd))
-                    {
-                        inputCommand.Command = cmd;
-                        inputCommand.X = x;
-                        inputCommand.Y = y;
-                        inputCommand.Direction = direction;
+                var baseCommand = input.Split(' ');
+                var commandFound = Enum.TryParse(baseCommand[0], out Constants.RobotCommands command);
+                inputCommand.Command = command;
 
-                        return true;
-                    }
-                    else
-                    {
-                        exceptionMessage = Constants.INVALIDCOMMAND;
-                        return false;
-                    }
-                }
-                else
+                if (!commandFound)
                 {
-                    inputCommand.Command = command;
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                exceptionMessage = Constants.INVALIDCOMMAND;
-                return false;
-            }
-        }
-
-        public static bool ParseCommand(string input, out int x, out int y, out Constants.Direction direction, out Constants.RobotCommands command)
-        {
-            try
-            {
-                var split = input.Split(' ');
-                command = Constants.RobotCommands.PLACE;
-
-                if (Enum.TryParse(split[0].ToUpper(), out Constants.RobotCommands splitCommand))
-                {
-                    command = splitCommand;
+                    exceptionMessage = Constants.INVALIDCOMMAND;
+                    return false;
                 }
                 
-                var split2 = split[1].Split(',');
-                x = Convert.ToInt32(split2[0]);
-                y = Convert.ToInt32(split2[1]);
-                Enum.TryParse(split2[2].ToUpper(), out Constants.Direction placeDirection);
+                if (command == Constants.RobotCommands.PLACE)
+                {
+                    var placeSplit = baseCommand[1].Split(',');
+                    inputCommand.X = Convert.ToInt32(placeSplit[0]);
+                    inputCommand.Y = Convert.ToInt32(placeSplit[1]);
+                    Enum.TryParse(placeSplit[2].ToUpper(), out Constants.Direction placeDirection);
 
-                direction = placeDirection;
+                    inputCommand.Direction = placeDirection;
+                }
 
                 return true;
             }
             catch (Exception)
             {
-                x = 0;
-                y = 0;
-                direction = Constants.Direction.NORTH;
-                command = Constants.RobotCommands.PLACE;
+                exceptionMessage = Constants.INVALIDCOMMAND;
                 return false;
-                //TODO: Output message
             }
         }
     }
